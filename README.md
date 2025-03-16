@@ -103,9 +103,26 @@ python manage.py migrate
 # Create superuser
 python manage.py createsuperuser
 
+# Populate database with sample data
+python manage.py populate_db
+
 # Run the development server
 python manage.py runserver
 ```
+
+The `populate_db` command will create:
+- Sample product categories (Phones, Laptops, Tablets, Accessories)
+- Sample products with images
+- Default admin user (if not exists)
+
+Sample Products:
+- iPhone 13 Pro (Phones category)
+- iPhone 14 Pro Max (Phones category)
+- MacBook Pro 14" (Laptops category)
+- iPad Pro 12.9" (Tablets category)
+- AirPods Pro (Accessories category)
+
+Note: Make sure your media directory exists and has proper permissions before running populate_db.
 
 ### 3. Frontend Setup
 
