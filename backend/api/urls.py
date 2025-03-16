@@ -7,9 +7,9 @@ from rest_framework_simplejwt.views import (
 from . import views
 
 router = DefaultRouter()
-router.register(r'categories', views.CategoryViewSet)
-router.register(r'products', views.ProductViewSet)
-router.register(r'carts', views.CartViewSet, basename='cart')
+router.register(r'products', views.ProductViewSet, basename='product')
+router.register(r'categories', views.CategoryViewSet, basename='category')
+router.register(r'cart', views.CartViewSet, basename='cart')
 router.register(r'orders', views.OrderViewSet, basename='order')
 
 urlpatterns = [
