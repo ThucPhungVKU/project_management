@@ -46,7 +46,7 @@ export default function ProductDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <img
-            src={imageUrl}
+            src={product.image}
             alt={product.name}
             className="w-full rounded-lg object-cover"
             onError={(e) => {
