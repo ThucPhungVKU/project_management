@@ -18,6 +18,7 @@ export default function Cart() {
   };
 
   if (cartItems.length === 0) {
+    console.log('Cart is empty');
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 sm:px-6 sm:py-24">
         <div className="text-center">
@@ -106,3 +107,11 @@ export default function Cart() {
     </div>
   );
 } 
+
+// const Cart = () => {
+//   return (
+//     <>Cart</>
+//   )
+// }
+
+// export default Cart;

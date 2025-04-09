@@ -2,6 +2,7 @@ from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from .models import Category, Product, Order, OrderItem, Cart, CartItem
 from .serializers import (
@@ -9,6 +10,7 @@ from .serializers import (
     OrderItemSerializer, CartSerializer, CartItemSerializer,
     UserSerializer
 )
+from rest_framework.views import APIView
 
 class RegisterViewSet(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
@@ -40,7 +42,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
@@ -53,6 +55,25 @@ class CartViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Cart.objects.filter(user=self.request.user)
+    
+class CartView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            product_id = request.data.get('product_id')
+            quantity = request.data.get('quantity')
+
+            # Kiểm tra dữ liệu
+            if not product_id or not quantity:
+                return Response({'error': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Logic thêm sản phẩm vào giỏ hàng
+            # ...
+
+            return Response({'message': 'Product added to cart'}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer

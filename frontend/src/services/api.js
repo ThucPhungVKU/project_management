@@ -10,12 +10,43 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('access'); // Lấy token từ localStorage
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
+
+const refreshAuthToken = async () => {
+  const refreshToken = localStorage.getItem('refresh');
+  if (!refreshToken) {
+    throw new Error('No refresh token available');
+  }
+
+  const response = await axios.post(`${API_URL}/token/refresh/`, {
+    refresh: refreshToken,
+  });
+
+  localStorage.setItem('access', response.data.access);
+  return response.data.access;
+};
+
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response && error.response.status === 401) {
+      try {
+        const newToken = await refreshAuthToken();
+        error.config.headers.Authorization = `Bearer ${newToken}`;
+        return api(error.config); // Thử lại yêu cầu với token mới
+      } catch (refreshError) {
+        console.error('Failed to refresh token:', refreshError);
+        // Xử lý logout nếu cần
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const productApi = {
   getAll: () => api.get('/products/'),
@@ -32,10 +63,7 @@ export const authApi = {
 };
 
 export const cartApi = {
-  getItems: () => api.get('/cart/'),
   addItem: (data) => api.post('/cart/', data),
-  updateItem: (id, data) => api.put(`/cart/${id}/`, data),
-  removeItem: (id) => api.delete(`/cart/${id}/`),
 };
 
-export default api; 
+export default api;

@@ -28,9 +28,15 @@ export default function ProductDetail() {
   const handleAddToCart = async () => {
     try {
       await cartApi.addItem({ product_id: id, quantity: 1 });
-      // Show success message or update cart count
+      alert('Product added to cart successfully!');
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        alert(`Failed to add product to cart: ${error.response.data.error || 'Unknown error'}`);
+      } else {
+        console.error('Error adding to cart:', error);
+        alert('Failed to add product to cart. Please try again.');
+      }
     }
   };
 
