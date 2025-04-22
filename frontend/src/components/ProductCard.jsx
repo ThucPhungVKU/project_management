@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
     : DEFAULT_IMAGE;
 
   return (
-    <div className="group relative">
+    <div className="group relative border border-gray-300 rounded-lg shadow-sm p-4"> {/* Thêm padding */}
       <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200">
         <img
           src={imageUrl}
