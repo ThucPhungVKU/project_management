@@ -59,8 +59,6 @@ cd ecommerce_project
 
 ```bash
 # Navigate to backend directory
-cd backend
-
 # Create virtual environment
 python -m venv venv
 
@@ -69,6 +67,8 @@ python -m venv venv
 venv\Scripts\activate
 # On macOS/Linux:
 source venv/bin/activate
+
+cd backend
 
 # Install dependencies
 pip install -r requirements.txt
