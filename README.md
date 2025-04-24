@@ -4,6 +4,7 @@ A full-stack e-commerce website built with React (Frontend) and Django (Backend)
 
 ## Features
 
+
 ### User Features
 - Browse product catalog
 - Search and filter products
