@@ -5,6 +5,7 @@ A full-stack e-commerce website built with React (Frontend) and Django (Backend)
 ## Features
 
 ### User Features
+
 - Browse product catalog
 - Search and filter products
 - View product details
@@ -15,6 +16,7 @@ A full-stack e-commerce website built with React (Frontend) and Django (Backend)
 - Profile management
 
 ### Admin Features
+
 - Product management (CRUD operations)
 - Order management
 - User management
@@ -24,6 +26,7 @@ A full-stack e-commerce website built with React (Frontend) and Django (Backend)
 ## Technology Stack
 
 ### Frontend
+
 - React 18
 - Redux Toolkit (State Management)
 - React Router (Navigation)
@@ -32,6 +35,7 @@ A full-stack e-commerce website built with React (Frontend) and Django (Backend)
 - Vite (Build Tool)
 
 ### Backend
+
 - Django 5.0
 - Django REST Framework
 - PostgreSQL Database
@@ -41,6 +45,7 @@ A full-stack e-commerce website built with React (Frontend) and Django (Backend)
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - Node.js (v16 or later)
 - Python (v3.8 or later)
 - PostgreSQL (v12 or later)
@@ -78,6 +83,7 @@ touch .env
 ```
 
 Add the following to your `.env` file:
+
 ```env
 DEBUG=True
 SECRET_KEY=your-secret-key-here
@@ -89,6 +95,7 @@ DB_PORT=5432
 ```
 
 #### Database Setup
+
 ```bash
 # Create database
 # Using psql:
@@ -111,11 +118,13 @@ python manage.py runserver
 ```
 
 The `populate_db` command will create:
+
 - Sample product categories (Phones, Laptops, Tablets, Accessories)
 - Sample products with images
 - Default admin user (if not exists)
 
 Sample Products:
+
 - iPhone 13 Pro (Phones category)
 - iPhone 14 Pro Max (Phones category)
 - MacBook Pro 14" (Laptops category)
@@ -138,6 +147,7 @@ touch .env
 ```
 
 Add the following to your `.env` file:
+
 ```env
 VITE_API_URL=http://localhost:8000/api
 ```
@@ -152,4 +162,22 @@ npm run dev
 ### Frontend Deployment (Firebase)
 
 1. Install Firebase CLI:
+
+```
+
+```
+
+create file .env in folder backend
+
+# Database settings
+
+```
+
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=your_database_name
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_HOST=localhost
+DB_PORT=5432
+
 ```
