@@ -165,8 +165,12 @@ npm run dev
 
 ```
 
+```
+
 create file .env in folder backend
+
 # Database settings
+
 ```
 
 DB_ENGINE=django.db.backends.postgresql
@@ -175,7 +179,5 @@ DB_USER=your_database_user
 DB_PASSWORD=your_database_password
 DB_HOST=localhost
 DB_PORT=5432
-
-```
 
 ```
